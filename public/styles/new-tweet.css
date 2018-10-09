@@ -1,0 +1,36 @@
+section {
+  display: inline-block;
+  padding-bottom: 10px;
+  width: 90%;
+  margin: 20px 20px 30px 20px;
+  background-color: #eee;
+  border-radius: 15px;
+
+}
+
+section span{
+  text-align: right;
+  float: right;
+  margin-right: 10px;
+
+}
+
+section input{
+float: left;
+margin-left: 10px;
+}
+
+
+form textarea{
+  /*margin-top: 20px;*/
+  width: 95%;
+}
+
+
+
+section h2{
+  margin-left: 10px;
+  margin-right: 10px;
+  border-bottom: 1px solid black;
+  text-align: left;
+}
