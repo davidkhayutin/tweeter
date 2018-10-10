@@ -9,4 +9,15 @@ $(document).ready(function() {
     $(".counter").removeClass("toManyCharacters");
    }
   });
+
+  $(".tweeted:hover").click(function(){
+    console.log("clicked");
+  })
+
+
+
+
+
+
+
 });

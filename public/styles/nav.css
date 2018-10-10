@@ -22,3 +22,24 @@ nav {
   font-size: 35px;
   line-height: 200%;
 }
+
+#nav-bar button{
+  float: right;
+  margin-top: 13px;
+  background: none;
+  border: none;
+
+}
+#nav-bar button span{
+  margin-right: 10px;
+  width: 0px;
+  height: auto;
+}
+
+#nav-bar button:hover{
+  color: #e8fdff;
+}
+
+#nav-bar button:focus {
+  outline: 0;
+}
