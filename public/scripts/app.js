@@ -1,7 +1,7 @@
-$(document).ready(function() {
+$(() => {
 
 function loadAllTweets(){
-    $.ajax("/tweets").then((product) => {
+  $.ajax("/tweets").then((product) => {
     renderTweets(product);
   })
 }
@@ -10,15 +10,20 @@ function loadAllTweets(){
     $('.new-tweet form').on("submit", (info)=>{
 
       info.preventDefault();
+      let charactersEntered = $('.new-tweet form textarea').val().length
       let data = $(info.target).serialize();
-      if((data.length) <= 5 || (data.length) > 140 ){
-        alert("your content is not tweetable")
-        data.preventDefault();
+      if(charactersEntered === 0) {
+        $(".new-tweet form .error").text("You must enter something into a tweet!").addClass("errorTweet")
+        return;
+      }
+      if(charactersEntered > 140){
+        $(".new-tweet form .error").text("Your tweet is too long. Please Shorten!").addClass("errorTweet")
+        return;
       }
 
       $.ajax("/tweets", {method: 'POST', data: data}).then(() =>{
         $(".new-tweet form")[0].reset();
-        $(".tweetfeed").empty();
+        $(".counter").text(140);
         loadAllTweets();
       })
 
@@ -27,7 +32,7 @@ function loadAllTweets(){
   function createTweetElement(tweetObject){
     return $("<article>").addClass("tweeted")
         .append($("<header>")
-          .append($("<img src=" + tweetObject.user.avatars.small + ">"))
+          .append($("<img>").attr("src", tweetObject.user.avatars.small))
           .append($("<h4>").text(tweetObject.user.name))
           .append($("<h6>").text(tweetObject.user.handle))
         )
@@ -44,13 +49,21 @@ function loadAllTweets(){
   }
 
   function renderTweets (data) {
+    $(".tweetfeed").empty();
     for(var i = 0; i < data.length; i++){
       let tweet = createTweetElement(data[i]);
-      $(".tweetfeed").append(tweet);
+      $(".tweetfeed").prepend(tweet);
+
     }
   }
 
   loadAllTweets();
+//deligation
+
+  $(".tweetfeed").on('click', "li span .fa-heart",(event) =>{
+    $(event.target).toggleClass("toManyCharacters");
+  })
+
 
   $("nav button").click(function(){
     console.log("click")
