@@ -1,6 +1,7 @@
 $(() => {
 
   function createTweetElement(tweetObject){
+    let realTime = moment(tweetObject.created_at).fromNow();
     return $("<article>").addClass("tweeted")
       .append($("<header>")
         .append($("<img>").attr("src", tweetObject.user.avatars.small))
@@ -9,7 +10,7 @@ $(() => {
       )
       .append($("<div>").text(tweetObject.content.text))
       .append($("<footer>")
-        .append($("<h6>").text(tweetObject.created_at))
+        .append($("<h6>").text(realTime))
         .append($("<ul>")
           .append($("<li>").append($("<span>").append($("<i>").addClass("fa fa-heart"))))
           .append($("<li>").append($("<span>").append($("<i>").addClass("fa fa-retweet"))))
@@ -51,12 +52,13 @@ $(() => {
     }
   });
 
-  $(".followMe").click(function(){
-    var scroll = $(window).scrollTop();
-    $(".followMe").toggle().text("ON")
 
-  })
-
+//   let status = false
+//   $(".followMe").click(function(){
+//     $(".followMe").text("ON")
+//    }
+// // $(".new-tweet").css(position: absolute)
+//       })
 
   $("nav button").click(function(){
     $(".new-tweet").slideToggle("slow");
