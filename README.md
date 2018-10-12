@@ -2,9 +2,9 @@
 
 A simple single-page AJAX based Twitter clone that uses HTML, CSS, JS, jQuery and AJAX in the front-end , and Node, Express and MongoDB in the back-end.
 
-!["Main Tweet Stream"]()
-!["New Compisition box"]()
-!["Toggled icons in each tweet"]()
+!["Main Tweet Stream"](https://github.com/davidkhayutin/tweeter/blob/master/docs/Main%20Tweet%20Stream.png)
+!["New Compisition box"](https://github.com/davidkhayutin/tweeter/blob/master/docs/New%20Tweet%20Compisition%20box%20.png)
+!["Toggled icons in each tweet"](https://github.com/davidkhayutin/tweeter/blob/master/docs/Toggled%20icons%20in%20each%20tweet.png)
 
 
 
