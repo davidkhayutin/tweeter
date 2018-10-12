@@ -3,7 +3,7 @@ nav {
   width: 100%;
   position: fixed;
   top: 0;
-  background-color: #b2edf0;
+  background-image: linear-gradient(to right top, #c4fcef, #a9e6e8, #96d0df, #8bb8d2, #87a0c1);
   padding: 0 2em 0;
   color: #e8fdff;
   font-size: 2em;

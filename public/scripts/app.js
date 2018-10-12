@@ -1,5 +1,6 @@
 $(() => {
 
+  //A function for structuring each tweet to the appropriate HTML & CSS style
   function createTweetElement(tweetObject){
     let realTime = moment(tweetObject.created_at).fromNow();
     return $("<article>").addClass("tweeted")
@@ -15,20 +16,19 @@ $(() => {
           .append($("<li>").append($("<span>").append($("<i>").addClass("fa fa-heart"))))
           .append($("<li>").append($("<span>").append($("<i>").addClass("fa fa-retweet"))))
           .append($("<li>").append($("<span>").append($("<i>").addClass("fa fa-flag"))))
-
-        )
       )
-    }
-
-  function renderTweets (data) {
-    $(".tweetfeed").empty();
-    for(var i = 0; i < data.length; i++){
-      let tweet = createTweetElement(data[i]);
-      $(".tweetfeed").prepend(tweet);
-
-    }
+    )
   }
 
+  //A funciton to render the newly created tweets into the main tweet body
+  function renderTweets (data) {
+    $(".tweetfeed").empty();
+    data.forEach((tweet) =>{
+      $(".tweetfeed").prepend(createTweetElement(tweet))
+    })
+  }
+
+  // An Ajax function which renders new tweets onto the page without refreshing page - seamless transition
   function loadAllTweets(){
     $.ajax("/tweets").then((product) => {
       renderTweets(product);
@@ -37,13 +37,14 @@ $(() => {
 
   loadAllTweets();
 
-   $(".new-tweet").slideToggle(0);
+  //initial setting for the tweet creation box
+  $(".new-tweet").slideToggle(0);
 
-  // $(".tweetfeed").on('click', "li span .fa-heart",(event) =>{
-  //   $(event.target).toggleClass("toManyCharacters");
-  // })
+  $(".tweetfeed").on('click', "li span .fa-heart",(event) =>{
+    $(event.target).toggleClass("toManyCharacters");
+  })
 
-
+  //A small addition that closes that tweet box in its current state (errors included) if the user chooses to wait before tweeting
   $(window).scroll(function (event) {
     var scroll = $(window).scrollTop();
      console.log($(".new-tweet").css("display"))
@@ -52,21 +53,14 @@ $(() => {
     }
   });
 
-
-//   let status = false
-//   $(".followMe").click(function(){
-//     $(".followMe").text("ON")
-//    }
-// // $(".new-tweet").css(position: absolute)
-//       })
-
+  //the following actions when the new tweet botton is "clicked"
   $("nav button").click(function(){
-    $(".new-tweet").slideToggle("slow");
+    $(".new-tweet").slideToggle();
     $(".new-tweet input:text, .new-tweet textarea").first().focus();
     $("html, body").animate({ scrollTop: 0 }, "slow");
   })
 
-
+  //the tweet submission button with present requirements of constitutes an acceptable new tweet
   $('.new-tweet form').on("submit", (info)=>{
 
     info.preventDefault();
