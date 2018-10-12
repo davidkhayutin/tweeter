@@ -1,3 +1,16 @@
+.sectionStart{
+width: 0px;
+
+}
+
+.followMe{
+  float:left;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+
+
 section {
   display: inline-block;
   padding-bottom: 10px;
